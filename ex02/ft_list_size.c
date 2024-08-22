@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_front.c                               :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorenzo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 18:22:10 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/08/22 19:46:54 by lorenzo          ###   ########.fr       */
+/*   Created: 2024/08/22 19:23:34 by lorenzo           #+#    #+#             */
+/*   Updated: 2024/08/22 19:47:17 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//If begin not NULL we create a new t_list element with the previous function.
-//We then assign it's pointer to the (old) first element of the list.
-//The initial pointer of the list will now be the newly created element.
-
 #include "ft_list.h"
+//Since last element of a list points to NULL we cycle the strings until NULL.
 
-void	ft_list_push_front(t_list **begin_list, void *data)
+int	ft_list_size(t_list *begin_list)
 {
-	t_list	*new;
-
-	if (*begin_list)
+	int 	i;
+	
+	i = 0;
+	while(*begin_list)
 	{
-		new = ft_create_elem(data);
-		new -> next = *begin_list;
-		*begin_list = new;
+		begin_list = begin_list -> next;
+		i++;
 	}
-	else
-		*begin_list = ft_create_elem(data);
+	return (i);
 }
