@@ -6,7 +6,7 @@
 /*   By: lorenzo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:22:10 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/08/22 19:46:54 by lorenzo          ###   ########.fr       */
+/*   Updated: 2024/08/22 22:08:58 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,22 @@ void	ft_list_push_front(t_list **begin_list, void *data)
 	else
 		*begin_list = ft_create_elem(data);
 }
+/*#include <stdio.h>
+void print_list(t_list *list)
+{
+	while(list != NULL)
+	{
+		printf("%s\n", (char *)list->data);
+		list = list->next;
+	}
+}
+
+int main()
+{
+	t_list *my_list = NULL;
+	ft_list_push_front(&my_list, "World");
+	ft_list_push_front(&my_list, "Hello");
+
+	printf("List after pushing elements:\n");
+	print_list(my_list);
+}*/

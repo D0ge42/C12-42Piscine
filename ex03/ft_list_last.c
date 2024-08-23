@@ -1,47 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_list_last.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorenzo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 19:23:34 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/08/22 23:04:07 by lorenzo          ###   ########.fr       */
+/*   Created: 2024/08/23 10:30:02 by lorenzo           #+#    #+#             */
+/*   Updated: 2024/08/23 11:06:21 by lorenzo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_list.h"
-//Since last element of a list points to NULL we cycle the strings until NULL.
 
-int	ft_list_size(t_list *begin_list)
+t_list	*ft_list_last(t_list *begin_list)
 {
-	int 	i;
-	
-	i = 0;
-	while(begin_list)
-	{
+	while (begin_list -> next != NULL)
 		begin_list = begin_list -> next;
-		i++;
-	}
-	return (i);
+	return (begin_list);
 }
-#include <stdio.h>
-/*int main()
+/*#include <stdio.h>
+int main()
 {
-	//Create nodes list.
+	int num1 = 123;
+	int num2 = 456;
+	int num3 = 789;
 	t_list *node1 = (t_list*)malloc(sizeof(t_list));
 	t_list *node2 = (t_list*)malloc(sizeof(t_list));
 	t_list *node3 = (t_list*)malloc(sizeof(t_list));
-	
-	//setting up node data and linking nodes.
-	node1->data = "First";
-	node1->next = node2;
 
-	node2->data = "Second";
+	node1->data = &num1;
+	node1-> next = node2;
+
+	node2->data = &num2;
 	node2->next = node3;
 
-	node3->data = "Third";
+	node3->data = &num3;
 	node3->next = NULL;
 
-	printf("List size %i\n", ft_list_size(node1));
+	t_list *last_node = ft_list_last(node1);
+
+	printf("All'ultimo nodo troviamo il dato %i\n",*(int *)last_node->data);
+
 }*/
