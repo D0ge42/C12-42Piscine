@@ -1,61 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_at.c                                       :+:      :+:    :+:   */
+/*   ft_list_reverse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorenzo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/23 17:25:50 by lorenzo           #+#    #+#             */
-/*   Updated: 2024/08/23 17:58:31 by lorenzo          ###   ########.fr       */
+/*   Created: 2024/08/26 19:40:44 by lonulli           #+#    #+#             */
+/*   Updated: 2024/08/26 19:41:16 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include <stdio.h>
 
-t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
+void	ft_list_reverse(t_list **begin_list)
 {
-	t_list			*current;
-	unsigned int	i;
+	t_list	*current;
+	t_list	*next;
+	t_list	*prev;
 
-	current = begin_list;
-	i = 0;
+	next = 0;
+	prev = 0;
+	current = *begin_list;
 	while (current)
 	{
-		if (i == nbr)
-			return (current);
-		current = current->next;
-		i++;
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
 	}
-	return (NULL);
+	*begin_list = prev;
 }
+
 /*int main()
 {
 	t_list *node1;
 	t_list *node2;
 	t_list *node3;
-	
 
 	node1 = (t_list*)malloc(sizeof(t_list));
 	node2 = (t_list*)malloc(sizeof(t_list));
 	node3 = (t_list*)malloc(sizeof(t_list));
-	
+
 	node1->data = "ciao1";
 	node1->next = node2;
 
-	node2->data = "ciao2";
-	node2->next = node3;
+	node2->data = "daje2";
+	node2->next =  node3;
 
-	node3->data = "ciao3";
+	node3->data = "sium";
 	node3->next = NULL;
 
-	t_list *node_found = ft_list_at(node1, 2);
-
-	if (node_found)
+	ft_list_reverse(&node1); //Put this before and after the while loop to test the function.
+	while(node1)
 	{
-		printf("Indirizzo nodo trovato con la funzione: %p\n", node_found);
-		printf("Indirizzo nodo corrispettivo: 		%p\n", node2);
+		printf("%s\n",(char*)node1->data);
+		node1 = node1->next;
 	}
-	else
-		printf("Non ho trovato nulla\n");
 }*/
