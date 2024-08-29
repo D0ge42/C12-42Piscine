@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 t_list	*ft_create_elem(void *data)
 {
 	t_list	*new;
@@ -26,21 +25,24 @@ t_list	*ft_create_elem(void *data)
 	new->next = NULL;
 	return (new);
 }
-//Il nodo più piccolo scompare? Perchè?
-void  ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
- {
-	t_list *start, *end, *og;
-	void *temp;
 
-	t_list *new = ft_create_elem(data);
-	start = *begin_list;
-	og = *begin_list;
-	while(og)
+void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+{
+	t_list	*start;
+	t_list	*og;
+	void	*temp;
+	t_list	*new;
+
+	new = ft_create_elem(data);
+	new->next = *begin_list;
+	*begin_list = new;
+	og = new;
+	while (og)
 	{
-		start = *begin_list;
-		while(start->next)
+		start = new;
+		while (start->next)
 		{
-			if((*cmp)(start->data, start->next->data) > 0)
+			if ((*cmp)(start->data, start->next->data) > 0)
 			{
 				temp = start->data;
 				start->data = start->next->data;
@@ -49,10 +51,10 @@ void  ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 			start = start->next;
 		}
 		og = og->next;
-	}	
+	}
 }
 
-int cmp(void *a, void *b)
+/*int cmp(void *a, void *b)
 {
 	return strcmp ((char *)a, (char *)b);
 }
@@ -90,7 +92,7 @@ int main()
 	node4->next = NULL;
 
 	ft_print_list(node1);
-	ft_sorted_list_insert(&node1, "6" , cmp);
+	ft_sorted_list_insert(&node1, "9" , cmp);
 	ft_print_list(node1);
 
-}
+}*/
